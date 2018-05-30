@@ -117,7 +117,7 @@ public class App {
         System.out.println("    \"swapNodesInRoute\": " + mTSP.swapNodesInRoute + ",");
         System.out.println("    \"swapNodesBetweenRoutes\": " + mTSP.swapNodesBetweenRoutes + ",");
         System.out.println("    \"insertNodeInRoute\": " + mTSP.insertNodeInRoute);
-        System.out.println("]");
+        System.out.println("}");
 
 
     }
