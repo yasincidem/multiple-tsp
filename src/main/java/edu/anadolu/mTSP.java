@@ -60,10 +60,15 @@ public class mTSP {
             }
 
         }
-        if (i == 1){
-            solutionCopy.swapHubWithNodeInRoute();
-            if (solutionCopy.cost < currentSolution.cost) {
-                swapHubWithNodeInRoute++;
+       if (i == 1 ){
+            if(numDepots > 1 ) {
+
+
+                solutionCopy.swapHubWithNodeInRoute();
+
+                if (solutionCopy.cost < currentSolution.cost) {
+                    swapHubWithNodeInRoute++;
+                }
             }
         }
         if (i == 2 ){
