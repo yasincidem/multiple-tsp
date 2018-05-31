@@ -60,34 +60,39 @@ class Solution {
         cost();
     }
 
-    void swapHubWithNodeInRoute() {
-        final List<Integer> collect = rand.ints(0, depots.size())
-                .distinct()
-                .limit(2)
-                .boxed()
-                .collect(Collectors.toList());
-        Collections.swap(depots, collect.get(0), collect.get(1));
-        List<Integer> first = new ArrayList<>();
-        List<Integer> second = new ArrayList<>();
-        for (int j = 0; j < routes.size(); j++) {
-            if (routes.get(j).get(0) == depots.get(collect.get(0)) ) {
-                first.add(j);
-            }
-            if (routes.get(j).get(0) == depots.get(collect.get(1))) {
-                second.add(j);
-            }
-        }
-        for (int i = 0; i < first.size(); i++) {
-            routes.get(first.get(i)).set(0, depots.get(collect.get(1)));
-            routes.get(first.get(i)).set(routes.get(first.get(i)).size() - 1, depots.get(collect.get(1)));
+   void swapHubWithNodeInRoute() {
 
-            routes.get(second.get(i)).set(0, depots.get(collect.get(0)));
-            routes.get(second.get(i)).set(routes.get(second.get(i)).size() - 1, depots.get(collect.get(0)));
+
+        int randomDepot = depots.size() == 0 ? 1 : rand.nextInt(depots.size());
+        int randomhub = rand.nextInt(routes.size());
+        int indexinrandomhub = rand.nextInt((routes.get(randomhub).size() - 1) -1) + 1;
+
+
+
+        final int elemWillBeDepot = routes.get(randomhub).get(indexinrandomhub);
+        final int depotWillDelete = depots.get(randomDepot);
+        depots.set(randomDepot, elemWillBeDepot);
+//        System.out.println("randomDepot" + randomDepot);
+        routes.get(randomhub).set(indexinrandomhub, depotWillDelete);
+
+//        System.out.println("elemWillBeDepot" + elemWillBeDepot);
+//        System.out.println("depotWillDelete" + depotWillDelete);
+
+
+
+        for (int i = 0; i < routes.size(); i++) {
+            if (routes.get(i).get(0) == depotWillDelete) {
+                routes.get(i).set(0, elemWillBeDepot);
+                routes.get(i).set(routes.get(i).size() - 1, elemWillBeDepot);
+            }
         }
+
+
 
 
         cost();
     }
+    
 
     void swapNodesBetweenRoutes() {
         final List<Integer> collect = rand.ints(0, routes.size())
